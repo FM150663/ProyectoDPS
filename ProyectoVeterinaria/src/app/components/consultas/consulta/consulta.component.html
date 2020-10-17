@@ -1,0 +1,142 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+      <img class="brand-logo" src="../../../favicon.ico" alt="positronX.io Logo">
+    </a>
+  </nav>
+  <br/><br/> <br/> 
+    <!-- Sidebar navigation -->
+    <div class="container-fluid">
+      <div class="row">
+    
+        <nav class="col-md-2 d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" routerLink="/dashboard">
+                  <i class="fas fa-user"></i>Perfil de usuario
+                </a>
+              </li>
+              <li class="nav-item" routerLink="/consultas">
+                <a class="nav-link active">
+                  <img src="../../../consultas.jpg">
+                  Consultas
+                </a>
+              </li>
+              <li class="nav-item" routerLink="/control">
+                <a class="nav-link active">
+                  <img src="../../../control.jpg">
+                  Control
+                </a>
+              </li>
+              <!-- Calling SignOut() Api from AuthService -->
+              <li class="nav-item">
+                <a class="nav-link" (click)="authService.SignOut()">
+                  <i class="fas fa-sign-out-alt"></i>Cerrar Sesión
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>    
+        <!--main content-->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="card mt-5">
+            <div class="card-body">
+              <h2>Realizar una consulta</h2>
+              <form #ConsultaForm="ngForm">
+      
+                  
+                  <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="consultaService.consultaSeleccionada.$key">
+      
+                  <div class="form-group">
+                    <select class="form-control" name="mascotaSeleccion" #nombre="ngModel" [(ngModel)]="mascotaSeleccion"> 
+                        <option value="Selecciona" selected="selected">Selecciona tu mascota</option>
+                        <option *ngFor="let mascota of listadoMascotas" value="{{mascota.nombre}}" >{{mascota.nombre}}</option>
+                    </select>
+                  </div>
+      
+                  <div class="form-group">
+                    <select class="form-control" name="tipo" #tipo="ngModel" [(ngModel)]="consultaService.consultaSeleccionada.tipo"> 
+                      <option value="Selecciona" selected="selected">Selecciona tu tipo de consulta</option>
+                      <option value="Chequeo" >Chequeo</option>
+                      <option value="Emergencia" >Emergencia</option>
+                      <option value="Periodica" >Periodica</option>
+                    </select>                        
+                  </div>
+      
+                  <div class="form-group">
+                      <textarea class="form-control" name="descripcion" #descripcion="ngModel"
+                      [(ngModel)]="consultaService.consultaSeleccionada.descripcion" placeholder="Ingresa una descripción"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="date" id="exampleInput" placeholder="yyyy-MM-dd" min="2010-01-01" 
+                        class="form-control" name="fecha" #fecha="ngModel"
+                        [(ngModel)]="consultaService.consultaSeleccionada.fecha" placeholder="Fecha de la consulta">
+                  </div>
+      
+                  <div class="form-group">
+                      <button class="btn btn-primary" type="submit" (click)="insertarConsulta(ConsultaForm)">
+                          <i class="fas fa-plus-circle"></i> Registrar Consulta
+                      </button>
+                      <button class="btn btn-secondary" type="reset" (click)="resetForm(ConsultaForm)">
+                          <i class="fas fa-sync-alt"></i> Reiniciar
+                      </button>
+                  </div>
+              </form>
+          </div>
+
+            <div class="card-body">
+                <h2>¡Registra a tu mascota!</h2>
+                <form #MascotaForm="ngForm">
+        
+                    
+                    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="consultaService.mascotaSeleccionada.$key">
+        
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="nombre" #nombre="ngModel"
+                            [(ngModel)]="consultaService.mascotaSeleccionada.nombre" placeholder="Nombre de tu mascota">
+                    </div>
+
+                    <!--<div class="form-group">
+                      <select class="form-control" name="opcionSeleccionado" #nombre="ngModel" [(ngModel)]="opcionSeleccionado"> 
+                          <option value="Selecciona" selected="selected">Selecciona tu mascota</option>
+                          <option *ngFor="let mascota of listadoMascotas" value="{{mascota.nombre}}" >{{mascota.nombre}}</option>
+                      </select>
+                  </div>-->
+        
+                    <div class="form-group">
+                      <select class="form-control" name="tipo" #tipo="ngModel" [(ngModel)]="consultaService.mascotaSeleccionada.tipo"> 
+                        <option value="Selecciona" selected="selected">Selecciona tu mascota</option>
+                        <option value="Perro" >Perro</option>
+                        <option value="Gato" >Gato</option>
+                        <option value="Perico" >Perico</option>
+                        <option value="Iguana" >Iguana</option>
+                      </select>                        
+                    </div>
+        
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="peso" #peso="ngModel"
+                            [(ngModel)]="consultaService.mascotaSeleccionada.peso" placeholder="Peso de tu mascota (Lb)">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="date" id="exampleInput" placeholder="yyyy-MM-dd" min="2010-01-01" 
+                          class="form-control" name="fechaNacimiento" #fechaNacimiento="ngModel"
+                          [(ngModel)]="consultaService.mascotaSeleccionada.fechaNacimiento" placeholder="Fecha de nacimiento de tu mascota">
+                    </div>
+        
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit" (click)="insertarMascota(MascotaForm)">
+                            <i class="fas fa-plus-circle"></i> Registrar Mascota
+                        </button>
+                        <button class="btn btn-secondary" type="reset" (click)="resetForm(MascotaForm)">
+                            <i class="fas fa-sync-alt"></i> Reiniciar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </main>               
+      </div>
+    </div>
