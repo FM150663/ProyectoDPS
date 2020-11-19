@@ -1,0 +1,104 @@
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+      <img class="brand-logo" src="../../../favicon.ico" alt="positronX.io Logo">
+    </a>
+  </nav>
+  <br/><br/> <br/> 
+    <!-- Sidebar navigation -->
+    <div class="container-fluid">
+      <div class="row">
+    
+        <nav class="col-md-2 d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" routerLink="/dashboard">
+                  <i class="fas fa-user"></i>Perfil de usuario
+                </a>
+              </li>
+              <li class="nav-item" routerLink="/consultas">
+                <a class="nav-link active">
+                  <img src="../../../consultas.jpg">
+                  Historial
+                </a>
+              </li>
+              <li class="nav-item" routerLink="/control">
+                <a class="nav-link active">
+                  <img src="../../../control.jpg">
+                  Control
+                </a>
+              </li>
+              <li class="nav-item" routerLink="/historial">
+                <a class="nav-link active">
+                  <img src="../../../control.jpg">
+                  Historial
+                </a>
+              </li>
+              <li class="nav-item" routerLink="/reportes">
+                <a class="nav-link active">
+                  <img src="../../../control.jpg">
+                  Reportes
+                </a>
+              </li>
+              <!-- Calling SignOut() Api from AuthService -->
+              <li class="nav-item">
+                <a class="nav-link" (click)="authService.SignOut()">
+                  <i class="fas fa-sign-out-alt"></i>Cerrar Sesión
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>    
+        <!--main content-->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class= "panel panel-default">
+                <form class="panel-body">
+                    <h2>Cita por mes</h2>
+                    <div class="form-group">
+                        <label>Desde: </label>
+                        <input type="date" id="exampleInput" placeholder="yyyy-MM-dd" min="2010-01-01" 
+                            class="form-control" name="fecha" placeholder="Fecha de la consulta">
+                    </div>
+                    <div class="form-group">
+                        <label>Hasta: </label>
+                        <input type="date" id="exampleInput" placeholder="yyyy-MM-dd" min="2010-01-01" 
+                            class="form-control" name="fecha" placeholder="Fecha de la consulta">
+                    </div>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-plus-circle"></i> Generar reporte
+                    </button>
+                </form>
+            </div>
+            <br/><hr/><br/>
+            <div class= "panel panel-default">
+                <form class="panel-body">
+                    <h2>Consultas por mascota</h2>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="nombre" placeholder="Código de la mascota">
+                    </div>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-plus-circle"></i> Generar reporte
+                    </button>
+                </form>
+            </div>
+            <br/><hr/><br/>
+            <div class= "panel panel-default">
+                <form class="panel-body">
+                    <h2>Consultas por tipo de mascota</h2>
+                    <div class="form-group">
+                        <select class="form-control" name="tipo"> 
+                          <option value="Selecciona" selected="selected">Selecciona el tipo</option>
+                          <option value="Perro" >Perro</option>
+                          <option value="Gato" >Gato</option>
+                          <option value="Perico" >Perico</option>
+                          <option value="Iguana" >Iguana</option>
+                        </select>                        
+                      </div>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-plus-circle"></i> Generar reporte
+                    </button>
+                </form>
+            </div>
+        </main>               
+      </div>
+    </div>

@@ -22,6 +22,8 @@ import { environment } from '../environments/environment';
 //auth service
 import { AuthService } from "./shared/services/auth.service";
 import { ControlComponent } from './components/control/control.component';
+import { HistorialComponent } from './components/historial/historial.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ControlComponent } from './components/control/control.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     ConsultaComponent,
-    ControlComponent
+    ControlComponent,
+    HistorialComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserModule,
